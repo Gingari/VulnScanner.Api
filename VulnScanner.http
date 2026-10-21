@@ -1,0 +1,6 @@
+@VulnScanner_HostAddress = http://localhost:5096
+
+GET {{VulnScanner_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
