@@ -1,0 +1,76 @@
+# .NET build
+[Bb]in/
+[Oo]bj/
+[Aa]rtifacts/
+[Pp]ublish/
+out/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Visual Studio Code
+.vscode/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+.nuget/
+
+# Tests and coverage
+TestResults/
+coverage/
+coverage.*
+*.coverage
+*.coveragexml
+
+# Logs
+logs/
+*.log
+
+# Temporary scan data
+temp/
+tmp/
+repositories/
+scan-results/
+.scanner-cache/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+appsettings.*.Local.json
+secrets.json
+
+# Certificates and private keys
+*.pfx
+*.p12
+*.key
+*.pem
+
+# Operating systems
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backup and temporary files
+*~
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
