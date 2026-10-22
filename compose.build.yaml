@@ -1,0 +1,41 @@
+  services:
+    api:
+      image: "${API_IMAGE:-gingari/vulnscanner-api:1.0.0}"
+
+      build:
+        context: .
+        dockerfile: Dockerfile
+        args:
+          GITLEAKS_VERSION: ${GITLEAKS_VERSION:?Set GITLEAKS_VERSION in .env}
+          TRIVY_VERSION: ${TRIVY_VERSION:?Set TRIVY_VERSION in .env}
+
+      ports:
+        - "127.0.0.1:${API_PORT:-8080}:8080"
+
+      env_file:
+        - .env
+
+      environment:
+        ASPNETCORE_ENVIRONMENT: Development
+
+      init: true
+      read_only: true
+
+      cap_drop:
+        - ALL
+
+      security_opt:
+        - no-new-privileges:true
+
+      cpus: 2.0
+      mem_limit: 3g
+      pids_limit: 256
+
+      tmpfs:
+        - /work/tmp:rw,noexec,nosuid,size=512m,uid=1654,gid=1654,mode=0700
+
+      volumes:
+        - trivy-cache:/work/cache
+
+  volumes:
+    trivy-cache:
