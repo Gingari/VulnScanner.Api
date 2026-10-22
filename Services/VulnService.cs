@@ -28,11 +28,8 @@ public sealed class VulnService
     
     public Vuln GetById(Guid id)
     {
-        var vuln = _repository.GetById(id);
-        if (vuln == null)
-        {
-            throw new KeyNotFoundException($"Vulnerability with ID {id} not found.");
-        }
-        return vuln;
+        return _repository.GetById(id)
+            ?? throw new KeyNotFoundException(
+                $"Уязвимость с ID {id} не найдена.");
     }
 }

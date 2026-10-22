@@ -6,11 +6,11 @@ namespace Api.Controllers;
 
 [ApiController]
 [Route("v1/vulnerabilities")]
-public class VulnerabilitiesController : ControllerBase
+public class VulnController : ControllerBase
 {
     private readonly VulnService _service;
 
-    public VulnerabilitiesController(VulnService service)
+    public VulnController(VulnService service)
     {
         _service = service;
     }
@@ -18,20 +18,19 @@ public class VulnerabilitiesController : ControllerBase
     [HttpPost]
     public IActionResult CreateVuln(CreateVulnRequest request)
     {
-        var vulnerability = _service.Create(request);
+        var vuln = _service.Create(request);
         return CreatedAtAction(nameof(GetById),
-            new { id = vulnerability.Id },
-            vulnerability);
+            new { id = vuln.Id }, new { id = vuln.Id });
     }
 
     [HttpGet("{id:guid}")]
     public IActionResult GetById(Guid id)
     {
-        var vulnerability = _service.GetById(id);
+        var vuln = _service.GetById(id);
 
-        return vulnerability is null
+        return vuln is null
             ? NotFound()
-            : Ok(vulnerability);
+            : Ok(vuln);
     }
 
 }

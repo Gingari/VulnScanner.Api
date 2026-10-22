@@ -1,10 +1,11 @@
 using Api.Models;
 
-namespace Api.Scanners;
+namespace Analyzer;
 
-public interface ICodeScanner
+public interface IScanOrchestrator
 {
     Task<ScanResult> ScanAsync(
+        Guid scanId,
         string repositoryUrl,
         CancellationToken cancellationToken);
 }

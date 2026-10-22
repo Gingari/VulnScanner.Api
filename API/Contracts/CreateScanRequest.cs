@@ -1,6 +1,10 @@
-namespace Api.Contracts
+using System.ComponentModel.DataAnnotations;
+
+namespace Api.Contracts;
+
+public sealed class CreateScanRequest
 {
-    public sealed class CreateScanRequest{
-        public required string RepositoryUrl { get; init; }
-    }
+    [Required]
+    [Url]
+    public required string RepositoryUrl { get; init; }
 }

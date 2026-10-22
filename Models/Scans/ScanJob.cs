@@ -1,5 +1,5 @@
 namespace Api.Models;
-
+using System.Text.Json.Serialization;
 public sealed class ScanJob
 {
     public Guid Id { get; init; }
@@ -16,4 +16,6 @@ public sealed class ScanJob
 
     public string? Error { get; set; }
     public bool CancellationRequested { get; internal set; }
+    [JsonIgnore]
+    public object SyncRoot { get; } = new();
 }

@@ -23,7 +23,7 @@ public sealed class ScansController : ControllerBase
         return AcceptedAtAction(
             nameof(GetById),
             new { id = scan.Id },
-            scan);
+            new { id = scan.Id });
     }
 
     [HttpGet("{id:guid}")]
@@ -35,17 +35,14 @@ public sealed class ScansController : ControllerBase
             ? NotFound()
             : Ok(scan);
     }
+    
     [HttpPost("{id:guid}/cancel")]
     public IActionResult Cancel(Guid id)
     {
-        var result = _service.Cancel(id);
+        var response = _service.Cancel(id);
 
-        if (result is null)
-            return NotFound();
-
-        if (!result.CancellationRequested)
-            return Conflict(result);
-
-        return Ok(result);
+        return response is null
+            ? NotFound()
+            : Ok(response);
     }
 }
