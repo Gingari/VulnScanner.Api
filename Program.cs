@@ -8,7 +8,8 @@ using Api.Middleware;
 using Analyzer.Processes;
 using Analyzer.Git;
 using Analyzer;
-
+using System.Reflection;
+using Microsoft.OpenApi;
 DotNetEnv.Env.NoClobber().Load();
 
 var builder = WebApplication.CreateBuilder(args);
@@ -70,7 +71,25 @@ builder.Services
         options => options.CloneTimeoutSeconds > 0,
         "CloneTimeoutSeconds должен быть больше нуля.")
     .ValidateOnStart();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Vulnerability Tracker API",
+        Version = "v1",
+        Description =
+            "Регистрация уязвимостей и фоновое сканирование " +
+            "публичных Git-репозиториев с помощью Gitleaks и Trivy. " +
+            "Все записи и результаты хранятся в памяти " +
+            "и удаляются после перезапуска."
+    });
 
+    var xmlFile =
+        $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+
+    options.IncludeXmlComments(
+        Path.Combine(AppContext.BaseDirectory, xmlFile));
+});
 var app = builder.Build();
 
 

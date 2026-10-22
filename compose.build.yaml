@@ -15,9 +15,6 @@
       env_file:
         - .env
 
-      environment:
-        ASPNETCORE_ENVIRONMENT: Development
-
       init: true
       read_only: true
 
