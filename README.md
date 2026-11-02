@@ -23,7 +23,7 @@ docker run -d `
   -e Repositories__AllowedHosts__0=github.com `
   -e Repositories__AllowedHosts__1=gitlab.com `
   -e Repositories__AllowedHosts__2=bitbucket.org `
-  gingari/vulnscanner-api:1.0.0
+  gingar23/vulnscanner-api:1.0.0
 ```
 
 Docker автоматически скачает образ, если его нет локально.

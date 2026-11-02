@@ -71,6 +71,7 @@ builder.Services
         options => options.CloneTimeoutSeconds > 0,
         "CloneTimeoutSeconds должен быть больше нуля.")
     .ValidateOnStart();
+    
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
@@ -90,6 +91,7 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(
         Path.Combine(AppContext.BaseDirectory, xmlFile));
 });
+
 var app = builder.Build();
 
 

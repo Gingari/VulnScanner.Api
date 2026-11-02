@@ -40,7 +40,6 @@ logs/
 # Temporary scan data
 temp/
 tmp/
-repositories/
 scan-results/
 .scanner-cache/
 
